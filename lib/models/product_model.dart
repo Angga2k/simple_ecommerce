@@ -1,41 +1,45 @@
 import 'package:simple_ecommerce/models/category_model.dart';
-import 'package:shamo/models/gallery_model.dart';
+import 'package:simple_ecommerce/models/gallery_model.dart';
 
 class ProductModel {
-  int? id;
-  String? name;
-  double? price;
-  String? description;
+  int id;
+  String name;
+  double price;
+  String description;
   String? tags;
-  CategoryModel? category;
+  CategoryModel category;
   DateTime? createdAt;
   DateTime? updatedAt;
-  List<GalleryModel>? galleries;
+  List<GalleryModel> galleries;
 
   ProductModel({
-    this.id,
-    this.name,
-    this.price,
-    this.description,
+    required this.id,
+    required this.name,
+    required this.price,
+    required this.description,
     this.tags,
-    this.category,
+    required this.category,
     this.createdAt,
     this.updatedAt,
-    this.galleries,
+    required this.galleries,
   });
 
-  ProductModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    price = double.parse(json['price'].toString());
-    description = json['description'];
-    tags = json['tags'];
-    category = CategoryModel.fromJson(json['category']);
-    galleries = json['galleries']
-        .map<GalleryModel>((gallery) => GalleryModel.fromJson(gallery))
-        .toList();
-    createdAt = DateTime.parse(json['created_at']);
-    updatedAt = DateTime.parse(json['updated_at']);
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
+      id: json['id'],
+      name: json['name'],
+      price: double.parse(json['price'].toString()),
+      description: json['description'],
+      tags: json['tags'],
+      category: CategoryModel.fromJson(json['category']),
+      galleries: (json['galleries'] as List)
+          .map((gallery) => GalleryModel.fromJson(gallery))
+          .toList(),
+      createdAt:
+          DateTime.parse(json['created_at'] ?? DateTime.now().toString()),
+      updatedAt:
+          DateTime.parse(json['updated_at'] ?? DateTime.now().toString()),
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -52,5 +56,3 @@ class ProductModel {
     };
   }
 }
-
-class UninitializedProductModel extends ProductModel {}

@@ -68,7 +68,7 @@ class _MainPageState extends State<MainPage> {
                   ),
                   BottomNavigationBarItem(
                     icon: Container(
-                      padding: EdgeInsets.only(top: 15),
+                      padding: EdgeInsets.only(top: 17, right: 40),
                       child: Image.asset(
                         'assets/icon_chat.png',
                         width: 20,
@@ -81,7 +81,7 @@ class _MainPageState extends State<MainPage> {
                   ),
                   BottomNavigationBarItem(
                     icon: Container(
-                      padding: EdgeInsets.only(top: 15),
+                      padding: EdgeInsets.only(top: 15, left: 40),
                       child: Image.asset(
                         'assets/icon_wishlist.png',
                         width: 20,
